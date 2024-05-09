@@ -1,5 +1,3 @@
-// import './assets/main.css'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
@@ -9,6 +7,7 @@ import router from './router'
 //安裝axios
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+
 //loding effect components
 import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'

@@ -27,17 +27,17 @@ export default {
   created() {
     //cookie中取得token（參考：https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie）
     const token = document.cookie.replace(/(?:(?:^|.*\s*)defToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    console.log(token)
-    this.$http.defaults.headers.common.Authorization = token
+    // console.log(token)
+    this.$http.defaults.headers.common.Authorization = token //薑token加到header中
 
     //將api再轉成可讀取的寫法
     //改寫api路徑，變成驗證登入的路徑api/user/check
     const api = `${import.meta.env.VITE_PATH_API}api/user/check`
 
     this.$http.post(api, this.user).then((res) => {
-      console.log(res)
+      // console.log(res)
       if (!res.data.success) {
-        this.$router.push('/login')
+        this.$router.push('/login') //登入失敗轉回登入頁面
       }
     })
   }

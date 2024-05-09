@@ -11,13 +11,11 @@ export default {
   },
   //確定環境變數已經加載
   created() {
-    console.log(import.meta.env.VITE_PATH_API, import.meta.env.VITE_PATH)
+    console.log(import.meta.env.VITE_PATH_API, import.meta.env.VITE_PATH_APP)
   }
 }
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <main><TheWelcome /></main>
 </template>

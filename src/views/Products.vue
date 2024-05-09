@@ -49,40 +49,43 @@ import DelModal from '../components/DelModal.vue'
 import Pagination from '../components/Pagination.vue'
 
 export default {
-  data() {
-    return {
-      products: [], //產品內容（陣列[]）
-      pagination: {}, //分頁資訊（物件{}）
-      tempProduct: {}, //外層的tempProduct
-      isNew: false,
-      isLoading: false
-    }
-  },
   components: {
     //區域註冊ProductModal元件
     ProductModal,
     DelModal,
     Pagination
   },
+  data() {
+    return {
+      products: [], //產品內容（陣列[]）：回傳所有的產品資料
+      pagination: {}, //分頁資訊（物件{}）：回傳產品同時有分頁資訊
+      tempProduct: {}, //外層的tempProduct
+      isNew: false,
+      isLoading: false
+    }
+  },
+
   methods: {
-    getProducts(page = 1) {
+    getProducts() {
       //取得遠端資料
-      // const api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/products`
-      // const api = `https://vue3-course-api.hexschool.io/api/${import.meta.env.VITE_PATH_APP}/products/?page=${page}`
-      const api = `https://vue3-course-api.hexschool.io/api/${import.meta.env.VITE_PATH_APP}/products/?page=${page}`
+      const api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products`
+      console.log(api)
 
-      this.isLoading = true //讀取前的效果
-
-      //取得api
-      this.$http.get(api).then((res) => {
-        // this.isLoading = false //讀取完成後關閉
-        if (res.data.success) {
-          //儲存產品和分頁資訊
-          console.log(res.data)
-          this.products = res.data.products
-          this.pagination = res.data.pagination //存取pagination的資訊，:pages="pagination" @emit-pages="getProducts"
-        }
-      })
+      //取得該api
+      this.$http
+        .get(api)
+        .then((res) => {
+          // this.isLoading = false //讀取完成後關閉
+          if (res.data.success) {
+            //儲存產品和分頁資訊
+            console.log(res.data)
+            // this.products = res.data.products
+            // this.pagination = res.data.pagination //存取pagination的資訊，:pages="pagination" @emit-pages="getProducts"
+          }
+        })
+        .catch((error) => {
+          console.error('API request failed:', error)
+        })
     },
     openModal(isNew, item) {
       this.isLoading = true
@@ -107,7 +110,7 @@ export default {
       //不做判斷時，會走新增這個路線（預設）
       //新增商品方式是post
       // let api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products`
-      let api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/products`
+      let api = `https://vue3-course-api.hexschool.io/api/${import.meta.env.VITE_PATH_APP}/products`
 
       let httpMethod = 'post'
 
@@ -119,7 +122,7 @@ export default {
 
       const productComponent = this.$refs.productModal
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
-        console.log(res)
+        // console.log(res)
         productComponent.hideModal()
         this.getProducts()
         if (res.data.success) {

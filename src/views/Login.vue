@@ -53,7 +53,7 @@ export default {
   methods: {
     signIn() {
       //登入方式
-      console.log('login')
+      console.log('login!')
       //插入api（用.env的檔案）
       const api = `${import.meta.env.VITE_PATH_API}admin/signin`
 
@@ -67,11 +67,11 @@ export default {
           //（儲存是為了維持登入狀態）
           const token = res.data.token //取得資料
           const expired = res.data.expired //取得資料
-          console.log(token, expired) //確定有存取到
+          // console.log(token, expired) //確定有存取到
           //將token資料儲存到cookie
           //(寫法參考：https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)
           document.cookie = `defToken=${token}; expires=${new Date(expired)}`
-          //登入成功，轉到dashboard頁面
+          //登入成功，轉到dashboard/products頁面
           this.$router.push('/dashboard/products')
         }
       })

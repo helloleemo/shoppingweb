@@ -5,7 +5,8 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <!-- 不管哪個頁面都需要<RouterView /> -->
-  <RouterView />
+
+  <router-view />
 </template>
 
 <!-- 引入bs方式 -->
