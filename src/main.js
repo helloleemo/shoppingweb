@@ -14,19 +14,23 @@ import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 
 //引入BS樣式
 import './assets/all.scss'
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 
 //引入千分號
-import { currency } from './methods/filters'
+import { currency, date } from './methods/filters'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
+
 //全域註冊(元件名稱,對應import的名稱)
 app.component('Loading', Loading)
+
 app.config.globalProperties.$filters = {
   //加入$避免和其他變數混淆
+  date,
   currency
 }
 

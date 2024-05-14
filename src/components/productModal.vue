@@ -173,7 +173,13 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-primary">確認</button>
+          <button
+            @click="$emit('update-product', tempProduct)"
+            type="button"
+            class="btn btn-primary"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
@@ -203,7 +209,7 @@ export default {
   data() {
     return {
       modal: {},
-      tempProduct: {} //內層接收的tempProduct
+      tempProduct: {} //因為單向資料流，要設定一個內層接收外層的tempProduct
     }
   },
   methods: {
@@ -212,28 +218,27 @@ export default {
       this.modal.show()
     },
     hideModal() {
-      this.modal.show()
+      this.modal.hide()
     },
     uploadFile() {
       //將檔案上傳到遠端，並儲存相關路徑
-      const uploadFile = this.$refs.fileInput.file[0]
-      // console.dir(uploadFile);
-      const formData = new FormData()
-      formData.append('file-to-upload', uploadFile)
-
-      //並儲存相關路徑
-      const url = '${import.env.VITE_PATH_API}api/${import.env.VITE_PATH_APP}/admin/upload'
-      this.$http.post(url, formData).then((res) => {
-        // console.log(res.data)
-        if (res.data.success) {
-          this.tempProduct.imgeUrl = res.data.imageUrl
+      const uploadedFile = this.$refs.fileInput.files[0]
+      // console.dir(uploadedFile)
+      const formData = new FormData() //js方法，轉換成FormData格式
+      formData.append('file-to-upload', uploadedFile)
+      const url = `${import.meta.VITE_PATH_API}api/${import.meta.VITE_PATH_APP}/admin/upload`
+      this.$http.post(url, formData).then((response) => {
+        // console.log(response.data)
+        if (response.data.success) {
+          this.tempProduct.imageUrl = response.data.imageUrl
         }
       })
     }
   },
   mounted() {
     //載入後實體化
-    //以下有用到new bootstrap.Modal的方法，所以要先載入
+    //以下有用到new bootstrap.Modal的方法，所以要在上方先import
+    //原實體化寫法const myModalAlternative = new bootstrap.Modal('#myModal', options)
     this.modal = new Modal(this.$refs.modal) //實體化寫法
   }
 }

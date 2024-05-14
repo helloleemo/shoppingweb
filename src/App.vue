@@ -1,11 +1,6 @@
-<script setup>
-// import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script></script>
 
 <template>
-  <!-- 不管哪個頁面都需要<RouterView /> -->
-
   <router-view />
 </template>
 

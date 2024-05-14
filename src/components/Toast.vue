@@ -10,6 +10,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import Toast from 'bootstrap/js/dist/toast'
 
@@ -17,10 +18,10 @@ export default {
   name: 'Toast',
   props: ['msg'],
   mounted() {
-    //開啟生命週期時，會歷時6秒，
+    //開啟生命週期後會歷時五秒
     const toastEl = this.$refs.toast
     const toast = new Toast(toastEl, {
-      delay: 6000
+      delay: 5000
     })
     toast.show()
   }

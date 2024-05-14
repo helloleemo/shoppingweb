@@ -1,7 +1,8 @@
 <template>
-  <Loading :active="isLoading" :can-cancel="true"></Loading>
+  <Loading :active="isLoading"></Loading>
+
   <div class="text-end">
-    <button @click="openModal" class="btn btn-primary" type="button">增加產品</button>
+    <button @click="openModal(true)" class="btn btn-primary mt-2" type="button">增加產品</button>
   </div>
   <table class="table mt-4">
     <thead>
@@ -18,16 +19,20 @@
       <tr v-for="item in products" :key="item.id">
         <td>{{ item.category }}</td>
         <td>{{ item.title }}</td>
-        <td class="text-right">{{ $filter.currency(item.origin_price) }}</td>
-        <td class="text-right">{{ $filter.currency(item.price) }}</td>
+        <td class="text-right">{{ $filters.currency(item.origin_price) }}</td>
+        <td class="text-right">{{ $filters.currency(item.price) }}</td>
         <td>
           <span v-if="item.is_enabled" class="text-success">啟用</span>
           <span class="text-muted" v-else>未啟用</span>
         </td>
         <td>
           <div class="btn-group">
-            <button @click="openModal(false)" class="btn btn-outline-primary btn-sm">編輯</button>
-            <button class="btn btn-outline-danger btn-sm">刪除</button>
+            <button @click="openModal(false, item)" class="btn btn-outline-primary btn-sm">
+              編輯
+            </button>
+            <button class="btn btn-outline-danger btn-sm" @click="openDelProductModal(item)">
+              刪除
+            </button>
           </div>
         </td>
       </tr>
@@ -37,7 +42,7 @@
   <ProductModal
     ref="productModal"
     :product="tempProduct"
-    @update-product="updateProｚduct;"
+    @update-product="updateProduct"
   ></ProductModal>
   <DelModal :item="tempProduct" ref="delModal" @del-item="delProduct" />
 </template>
@@ -60,74 +65,71 @@ export default {
       products: [], //產品內容（陣列[]）：回傳所有的產品資料
       pagination: {}, //分頁資訊（物件{}）：回傳產品同時有分頁資訊
       tempProduct: {}, //外層的tempProduct
-      isNew: false,
+      isNew: false, //是否是新增的狀態
+
       isLoading: false
     }
   },
-
+  inject: ['emitter'],
   methods: {
-    getProducts() {
+    getProducts(page = 1) {
       //取得遠端資料
-      const api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products`
-      console.log(api)
+      this.isLoading = true //的時候出現轉圈圈
+
+      const api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products/?page=${page}`
+
+      //讀取前載入loading畫面
 
       //取得該api
-      this.$http
-        .get(api)
-        .then((res) => {
-          // this.isLoading = false //讀取完成後關閉
-          if (res.data.success) {
-            //儲存產品和分頁資訊
-            console.log(res.data)
-            // this.products = res.data.products
-            // this.pagination = res.data.pagination //存取pagination的資訊，:pages="pagination" @emit-pages="getProducts"
-          }
-        })
-        .catch((error) => {
-          console.error('API request failed:', error)
-        })
+      this.$http.get(api).then((res) => {
+        this.isLoading = false //讀取完成後關閉
+
+        if (res.data.success) {
+          //儲存產品和分頁資訊
+          console.log(res.data)
+          this.products = res.data.products
+          this.pagination = res.data.pagination //存取pagination的資訊，:pages="pagination" @emit-pages="getProducts"
+        }
+      })
     },
     openModal(isNew, item) {
-      this.isLoading = true
+      // console.log(isNew, item)
       if (isNew) {
         this.tempProduct = {}
-        // this.isLoading = false
       } else {
         this.tempProduct = {
           ...item
         }
-        // this.isLoading = false
       }
       this.isNew = isNew
 
       const productComponent = this.$refs.productModal
       productComponent.showModal()
-      this.isLoading = false
     },
     updateProduct(item) {
       this.tempProduct = item
-      //取得資料(新增的狀態)：宣告api
-      //不做判斷時，會走新增這個路線（預設）
-      //新增商品方式是post
-      // let api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products`
-      let api = `https://vue3-course-api.hexschool.io/api/${import.meta.env.VITE_PATH_APP}/products`
 
+      //不做判斷時，會走「新增」這個路線（預設）
+      let api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/product`
       let httpMethod = 'post'
 
-      //更新的方法是put：如果不是新增品項，重新調整api和httpMethod
+      //如果不是新的物件，則將方法改為put(編輯)
       if (!this.isNew) {
-        api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/products/${item.id}`
+        api = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/admin/product/${item.id}`
         httpMethod = 'put'
       }
 
       const productComponent = this.$refs.productModal
+      //將http方法用[httpMethod]參數方式帶入
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
-        // console.log(res)
+        console.log(res)
         productComponent.hideModal()
-        this.getProducts()
+
+        //根據成功或失敗，推送不同的訊息
         if (res.data.success) {
           this.getProducts()
           this.emitter.emit('push-message', {
+            //ToastMasseges裡面的push-message方法
             style: 'success',
             title: '更新成功'
           })
@@ -154,10 +156,10 @@ export default {
         delComponent.hideModal()
         this.getProducts()
       })
-    },
-    created() {
-      this.getProducts()
     }
+  },
+  created() {
+    this.getProducts()
   }
 }
 </script>

@@ -1,5 +1,7 @@
 <template>
   <!-- 登入頁面的模板 -->
+  <Loading :active="isLoading"></Loading>
+  <ToastMessages></ToastMessages>
   <div class="container mt-5">
     <form @submit.prevent="signIn" class="row justify-content-center">
       <div class="col-md-6">
@@ -40,16 +42,29 @@
 </template>
 
 <script>
+import ToastMessages from '../components/ToastMessages.vue'
+import emitter from '../methods/emitter.js'
+
 export default {
+  components: {
+    ToastMessages
+  },
+  provide() {
+    return {
+      emitter
+    }
+  },
   data() {
     return {
       //資料須完全對應文件:https://github.com/hexschool/vue3-course-api-wiki/wiki/%E7%99%BB%E5%85%A5%E5%8F%8A%E9%A9%97%E8%AD%89
       user: {
         username: '',
         password: ''
-      }
+      },
+      isLoading: false
     }
   },
+  // inject: ['emitter'],
   methods: {
     signIn() {
       //登入方式
@@ -57,10 +72,14 @@ export default {
       //插入api（用.env的檔案）
       const api = `${import.meta.env.VITE_PATH_API}admin/signin`
 
+      this.isLoading = true
+
       //console.log(api) //確認api正確導入
       //axios套件使用
       //POST方法，取得裡面的資料(api是路徑，this.user是夾帶資料)
       this.$http.post(api, this.user).then((res) => {
+        this.isLoading = false
+
         //如果登入成功／失敗的狀態
         if (res.data.success) {
           //儲存cookie的方法：
@@ -71,6 +90,7 @@ export default {
           //將token資料儲存到cookie
           //(寫法參考：https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)
           document.cookie = `defToken=${token}; expires=${new Date(expired)}`
+
           //登入成功，轉到dashboard/products頁面
           this.$router.push('/dashboard/products')
         }

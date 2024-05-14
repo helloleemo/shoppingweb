@@ -1,14 +1,15 @@
 <template>
   <Navbar></Navbar>
-  <div class="container-fluid">
+  <div class="container-fluid mt-3 position-relative">
+    <ToastMessages></ToastMessages>
     <router-view />
   </div>
 </template>
 
 <script>
 //元件加進來的方式
-import ToastMessages from '../components/ToastMessages.vue'
 import emitter from '../methods/emitter.js'
+import ToastMessages from '../components/ToastMessages.vue'
 import Navbar from '../components/Navbar.vue'
 
 export default {

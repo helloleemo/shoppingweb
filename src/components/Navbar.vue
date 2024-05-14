@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid ps-3">
+      <a class="navbar-brand text-white fw-bold" href="#">商品後台</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,16 +16,26 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <router-link
+              to="/dashboard/products"
+              class="nav-link active text-white"
+              aria-current="page"
+              href="#"
+              >產品列表</router-link
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <router-link to="/dashboard/orders" class="nav-link text-white" href=""
+              >訂單資訊</router-link
+            >
           </li>
           <li class="nav-item">
-            <a @click.prevent="logout" class="nav-link" href="#">登出</a>
+            <router-link to="/dashboard/coupons" class="nav-link text-white" href="#"
+              >優惠卷</router-link
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <a @click.prevent="logout" class="nav-link text-white" href="#">登出</a>
           </li>
         </ul>
       </div>
@@ -45,6 +55,9 @@ export default {
           this.$router.push('/login')
         }
       })
+    },
+    clickPage() {
+      this.$router.push('/dashboard/orders')
     }
   }
 }

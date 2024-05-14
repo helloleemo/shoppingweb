@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(), //(import.meta.env.BASE_URL)
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
@@ -29,6 +30,29 @@ const router = createRouter({
         {
           path: 'products',
           component: () => import('../views/Products.vue')
+        },
+        {
+          path: 'coupons',
+          component: () => import('../views/Coupons.vue')
+        },
+        {
+          path: 'orders',
+          component: () => import('../views/Orders.vue')
+        }
+      ]
+    },
+    //客戶端
+    {
+      path: '/user',
+      component: () => import('../views/Userboard.vue'),
+      children: [
+        {
+          path: 'cart',
+          component: () => import('../views/UserCart.vue')
+        },
+        {
+          path: 'product/:productId',
+          component: () => import('../views/UserProduct.vue')
         }
       ]
     }
