@@ -23,6 +23,10 @@ const router = createRouter({
       component: () => import('../views/Login.vue')
     },
     {
+      path: '/Portfolio',
+      component: () => import('../views/Portfolio.vue')
+    },
+    {
       path: '/dashboard',
       component: () => import('../views/Dashboard.vue'),
       //巢狀路由寫法
@@ -47,14 +51,35 @@ const router = createRouter({
       component: () => import('../views/Userboard.vue'),
       children: [
         {
+          path: 'view',
+          component: () => import('../views/LandingPage.vue')
+        },
+        {
           path: 'cart',
           component: () => import('../views/UserCart.vue')
         },
         {
+          path: 'cartview',
+          component: () => import('../views/UserCartView.vue')
+        },
+        {
+          path: 'cartorder',
+          component: () => import('../views/UserOrder.vue')
+        },
+        {
           path: 'product/:productId',
           component: () => import('../views/UserProduct.vue')
+        },
+        {
+          path: 'checkout/:orderId',
+          component: () => import('../views/UserCheckout.vue')
         }
       ]
+    },
+    //作品集
+    {
+      path: '/todolist',
+      component: () => import('../views/ToDoList.vue')
     }
   ]
 })

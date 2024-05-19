@@ -29,10 +29,10 @@
 // :pages="{ 頁碼資訊 }"
 // @emitPages="更新頁面事件"
 export default {
-  props: ['pages'], //外面傳入pagination
+  props: ['pages'],
   methods: {
     updatePage(page) {
-      this.$emit('emit-pages', page) //對外發送的部分
+      this.$emit('emit-pages', page)
     }
   }
 }

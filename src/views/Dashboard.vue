@@ -19,6 +19,7 @@ export default {
     ToastMessages
   },
   provide() {
+    //配合inject，讓內層也可以使用
     return {
       emitter
     }

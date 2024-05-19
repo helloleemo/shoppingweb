@@ -224,7 +224,9 @@ export default {
       //將檔案上傳到遠端，並儲存相關路徑
       const uploadedFile = this.$refs.fileInput.files[0]
       // console.dir(uploadedFile)
-      const formData = new FormData() //js方法，轉換成FormData格式
+      //js方法，轉換成FormData格式
+      const formData = new FormData()
+      //增加欄位到form表單
       formData.append('file-to-upload', uploadedFile)
       const url = `${import.meta.VITE_PATH_API}api/${import.meta.VITE_PATH_APP}/admin/upload`
       this.$http.post(url, formData).then((response) => {

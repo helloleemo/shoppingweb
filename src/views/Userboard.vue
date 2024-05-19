@@ -2,10 +2,10 @@
   <!-- NavBar -->
   <UserNavbar></UserNavbar>
   <!-- container -->
-  <div class="container">
-    <ToastMessages></ToastMessages>
-    <router-view></router-view>
-  </div>
+  <!-- <div class="container"> -->
+  <ToastMessages></ToastMessages>
+  <router-view></router-view>
+  <!-- </div> -->
 </template>
 
 <script>

@@ -1,7 +1,7 @@
+<!-- 登入頁面的模板 -->
+<Loading :active="isLoading"></Loading>
+<ToastMessages></ToastMessages>
 <template>
-  <!-- 登入頁面的模板 -->
-  <Loading :active="isLoading"></Loading>
-  <ToastMessages></ToastMessages>
   <div class="container mt-5">
     <form @submit.prevent="signIn" class="row justify-content-center">
       <div class="col-md-6">
@@ -10,13 +10,13 @@
           <label for="inputEmail" class="sr-only">Email address</label>
           <!-- v-model新增在此input -->
           <input
+            v-model="user.username"
             type="email"
             id="inputEmail"
             class="form-control"
             placeholder="Email address"
             required
             autofocus
-            v-model="user.username"
           />
         </div>
         <div class="mb-2">
@@ -71,10 +71,10 @@ export default {
       console.log('login!')
       //插入api（用.env的檔案）
       const api = `${import.meta.env.VITE_PATH_API}admin/signin`
+      //console.log(api) //確認api正確導入
 
       this.isLoading = true
 
-      //console.log(api) //確認api正確導入
       //axios套件使用
       //POST方法，取得裡面的資料(api是路徑，this.user是夾帶資料)
       this.$http.post(api, this.user).then((res) => {
