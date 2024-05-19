@@ -1,6 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
   <!-- banner -->
   <div class="banner">
     <div class="">
@@ -134,7 +133,6 @@
     </form>
   </div>
 </template>
-<!-- -NyDYnTkChdJR-2j2DgU -->
 
 <script>
 export default {

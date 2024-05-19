@@ -11,7 +11,7 @@ import VueAxios from 'vue-axios'
 //loding effect components
 import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
-import Loading2 from './components/Loading.vue'
+// import Loading2 from './components/Loading.vue'
 
 //引入BS樣式
 import './assets/all.scss'
@@ -60,9 +60,9 @@ app.use(router)
 app.use(VueAxios, axios)
 
 //全域註冊(元件名稱,對應import的名稱)
-app.component('Loading', Loading)
+app.component('LoadingPage', Loading)
 app.component('font-awesome-icon', FontAwesomeIcon)
-app.component('Loading2', Loading2)
+// app.component('Loading2', Loading2)
 app.component('VForm', Form)
 app.component('VField', Field)
 app.component('ErrorMessage', ErrorMessage)

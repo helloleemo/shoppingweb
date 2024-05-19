@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
   <div id="page-top">
     <!-- Navigation-->
 
@@ -292,6 +292,7 @@
     </div>
   </footer>
 </template>
+
 <script>
 // import UserFooter from '../components/UserFooter.vue'
 

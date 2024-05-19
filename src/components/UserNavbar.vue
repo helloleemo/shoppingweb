@@ -31,9 +31,6 @@
               ></i>
             </button>
           </li>
-
-          <!-- <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">聯絡我們</a></li> -->
         </ul>
       </div>
     </div>
@@ -88,10 +85,9 @@ export default {
       }
 
       this.$http.put(url, { data: cart }).then((res) => {
-        // console.log(res)
+        console.log(res)
         this.status.loadingItem = ''
         this.isLoading = true
-
         this.getCart()
       })
     }

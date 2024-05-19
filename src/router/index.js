@@ -20,35 +20,31 @@ const router = createRouter({
     },
     {
       path: '/login',
-      component: () => import('../views/Login.vue')
-    },
-    {
-      path: '/Portfolio',
-      component: () => import('../views/Portfolio.vue')
+      component: () => import('../views/AdminLogin.vue')
     },
     {
       path: '/dashboard',
-      component: () => import('../views/Dashboard.vue'),
+      component: () => import('../views/AdminDashboard.vue'),
       //巢狀路由寫法
       children: [
         {
           path: 'products',
-          component: () => import('../views/Products.vue')
+          component: () => import('../views/AdminProducts.vue')
         },
         {
           path: 'coupons',
-          component: () => import('../views/Coupons.vue')
+          component: () => import('../views/UserCoupons.vue')
         },
         {
           path: 'orders',
-          component: () => import('../views/Orders.vue')
+          component: () => import('../views/AdminOrders.vue')
         }
       ]
     },
     //客戶端
     {
       path: '/user',
-      component: () => import('../views/Userboard.vue'),
+      component: () => import('../views/UserBoard.vue'),
       children: [
         {
           path: 'view',

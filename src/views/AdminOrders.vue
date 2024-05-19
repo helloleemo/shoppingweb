@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
   <div class="container">
     <h3 class="text-start pt-3">訂單管理</h3>
 
@@ -66,7 +66,7 @@
 <script>
 import DelModal from '@/components/DelModal.vue'
 import OrderModal from '@/components/orderModal.vue'
-import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/PaginationProduct.vue'
 
 export default {
   data() {

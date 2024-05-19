@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
   <div class="banner">
     <div class="imgbox">
       <img
@@ -45,9 +45,6 @@
                 </td>
                 <td>
                   {{ $filters.currency(item.product.price) }}
-                  <!-- <small class="text-success">{{
-                    `折扣價：${$filters.currency(item.product.price)}`
-                  }}</small> -->
                 </td>
                 <td>
                   <button

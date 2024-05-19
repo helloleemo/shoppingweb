@@ -1,53 +1,51 @@
 <!-- 登入頁面的模板 -->
-<Loading :active="isLoading"></Loading>
-<ToastMessages></ToastMessages>
 <template>
+  <LoadingPage :active="isLoading"></LoadingPage>
+  <ToastMessages></ToastMessages>
   <div class="container mt-5">
     <form @submit.prevent="signIn" class="row justify-content-center">
-      <div class="col-md-6">
-        <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
-        <div class="mb-2">
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <!-- v-model新增在此input -->
-          <input
-            v-model="user.username"
-            type="email"
-            id="inputEmail"
-            class="form-control"
-            placeholder="Email address"
-            required
-            autofocus
-          />
-        </div>
-        <div class="mb-2">
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input
-            type="password"
-            id="inputPassword"
-            class="form-control"
-            placeholder="Password"
-            required
-            v-model="user.password"
-          />
-        </div>
+      <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
+      <div class="mb-2">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <!-- v-model新增在此input -->
+        <input
+          v-model="user.username"
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+      </div>
+      <div class="mb-2">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+          v-model="user.password"
+        />
+      </div>
 
-        <div class="text-end" mt-4>
-          <button @click.prevent="signIn" class="btn btn-lg btn-primary btn-block" type="submit">
-            登入
-          </button>
-        </div>
+      <div class="text-end" mt-4>
+        <button @click.prevent="signIn" class="btn btn-lg btn-primary btn-block" type="submit">
+          登入
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import ToastMessages from '../components/ToastMessages.vue'
+// import ToastMessages from '../components/ToastMessages.vue'
 import emitter from '../methods/emitter.js'
 
 export default {
   components: {
-    ToastMessages
+    // ToastMessages
   },
   provide() {
     return {

@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="container">
       <div class="frame border rounded p-4 pb-5">
-        <h3 style="font-family: 'Pattaya'" class="fw-bold text-center">To Do List</h3>
+        <h3 class="fw-bold text-center" style="font-family: 'Pattaya'">To Do List</h3>
         <div class="input-group mb-3">
           <input
             v-model="content.text"
@@ -12,18 +12,14 @@
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
             style="border: 2px solid black"
+            @keyup.enter="addBtn"
           />
-
           <button
             @click="addBtn"
-            @keyup.enter="addBtn"
             class="btn btn-dark"
-            type="submit"
+            type="button"
             id="button-addon2"
-            style="
-            border: 2px solid black; 
-            border-left: none;
-            color"
+            style="border: 2px solid black; border-left: none"
           >
             +
           </button>
@@ -37,23 +33,13 @@
               <button v-else @click="finishedList(index)" class="btn p-0 pe-2">
                 <i class="bi bi-square"></i>
               </button>
-
               <span :class="{ done: item.isCompleted }">{{ item.text }}</span>
               <div class="edit ms-auto">
                 <i
                   @click="setPriority(item)"
                   :style="{ color: priorityColors[item.priorityIndex] }"
                   class="priority pe-2 bi bi-circle-fill small"
-                  style=""
                 ></i>
-                <!-- <button
-                  @click="editList(index)"
-                  :disabled="item.isCompleted"
-                  class="btn small text-end p-0"
-                >
-                  <i class="bi bi-pencil pe-3"></i>
-                </button> -->
-
                 <button
                   @click="deleteList(index)"
                   type="button"
@@ -64,9 +50,6 @@
                 </button>
               </div>
             </div>
-            <!-- <div v-if="isEditing" class="edit">
-              <input type="text" />
-            </div> -->
           </li>
         </ul>
       </div>
@@ -85,8 +68,6 @@ export default {
         isEditing: false,
         priorityIndex: 0
       },
-      // listEdit: {},
-      // textEdit: ''
       priorityColors: ['gray', 'rgb(184, 51, 51)', '#3dbeff', '#fddb00']
     }
   },
@@ -94,12 +75,11 @@ export default {
     addBtn() {
       if (this.content.text !== '') {
         this.temp.push({
-          ...this.content, //淺拷貝
+          ...this.content,
           isCompleted: false,
           isEditing: false,
           priorityIndex: 0
         })
-        console.log(this.content)
       }
       this.content.text = ''
     },
@@ -107,18 +87,12 @@ export default {
       this.temp[i].isCompleted = !this.temp[i].isCompleted
     },
     deleteList(i) {
-      this.temp.splice(i, 1) //splice：從i開始刪除1個元素
+      this.temp.splice(i, 1)
     },
     setPriority(item) {
       item.priorityIndex = (item.priorityIndex + 1) % this.priorityColors.length
     }
   }
-  // editList(item) {
-  //   this.isEditing = !this.isEditing
-  //   this.listEdit = item
-  //   this.textEdit = item.text
-  //   console.log(this.isEditing)
-  // }
 }
 </script>
 

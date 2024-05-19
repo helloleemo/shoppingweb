@@ -12,12 +12,12 @@
 import emitter from '../methods/emitter'
 import ToastMessages from '@/components/ToastMessages.vue'
 import UserNavbar from '../components/UserNavbar.vue'
-import Banner from '../components/Banner.vue'
+// import Banner from '../components/Banner.vue'
 
 export default {
   components: {
     UserNavbar,
-    Banner,
+    // Banner,
     ToastMessages
   },
   provide() {

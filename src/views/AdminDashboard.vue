@@ -10,7 +10,7 @@
 //元件加進來的方式
 import emitter from '../methods/emitter.js'
 import ToastMessages from '../components/ToastMessages.vue'
-import Navbar from '../components/Navbar.vue'
+import Navbar from '../components/AdminNavbar.vue'
 
 export default {
   //區域註冊元件的方式

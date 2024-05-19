@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Toast from '@/components/Toast.vue'
+import Toast from '@/components/InfoToast.vue'
 
 export default {
   components: { Toast },

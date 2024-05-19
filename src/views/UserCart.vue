@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
 
   <!-- Banner -->
   <div class="imgbox">
@@ -294,7 +294,7 @@ export default {
         qty: 1
       }
       this.$http.post(url, { data: cart }).then((res) => {
-        // console.log(res)
+        console.log(res)
         ;(this.status.loadingItem = ''), //清空
           // this.cartCount=
           this.getCart()
@@ -324,7 +324,7 @@ export default {
       }
 
       this.$http.put(url, { data: cart }).then((res) => {
-        // console.log(res)
+        console.log(res)
         this.status.loadingItem = ''
         this.isLoading = true
 
@@ -363,7 +363,7 @@ export default {
       const url = `${import.meta.env.VITE_PATH_API}api/${import.meta.env.VITE_PATH_APP}/order`
       const order = this.form
       this.$http.post(url, { data: order }).then((res) => {
-        // console.log(res)
+        console.log(res)
       })
     },
     getToCart() {

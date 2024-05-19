@@ -15,15 +15,15 @@
 import Toast from 'bootstrap/js/dist/toast'
 
 export default {
-  name: 'Toast',
+  name: 'infoToast',
   props: ['msg'],
   mounted() {
     //開啟生命週期後會歷時五秒
     const toastEl = this.$refs.toast
-    const toast = new Toast(toastEl, {
+    const infoToast = new Toast(toastEl, {
       delay: 5000
     })
-    toast.show()
+    infoToast.show()
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template class="bg-secondary">
-  <!-- <Loading2 :active="isLoading"></Loading2> -->
-  <Loading :active="isLoading"></Loading>
+  <LoadingPage :active="isLoading"></LoadingPage>
   <div class="container">
     <h3 class="text-start pt-3">產品管理</h3>
     <div class="text-start">
@@ -56,7 +55,7 @@
 //載入ProductModal
 import ProductModal from '../components/ProductModal.vue'
 import DelModal from '../components/DelModal.vue'
-import Pagination from '../components/Pagination.vue'
+import Pagination from '../components/PaginationProduct.vue'
 
 export default {
   components: {
@@ -175,7 +174,5 @@ export default {
   width: 50px;
   object-fit: cover;
   overflow: hidden;
-  img {
-  }
 }
 </style>
