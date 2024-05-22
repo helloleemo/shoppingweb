@@ -53,7 +53,7 @@
 
 <script>
 //載入ProductModal
-import ProductModal from '../components/ProductModal.vue'
+import ProductModal from '../components/productModal.vue'
 import DelModal from '../components/DelModal.vue'
 import Pagination from '../components/PaginationProduct.vue'
 

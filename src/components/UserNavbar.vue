@@ -4,7 +4,7 @@
   <nav class="navbar navbarMain navbar-expand-lg fixed-top navbar-light py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
       <div class="imgboxLogo">
-        <img @click="getToView" src="../assets/img/logo1.png" alt="" />
+        <img @click="getToView" src="../assets/img/logo2_dark.png" alt="" />
       </div>
       <button
         class="navbar-toggler navbar-toggler-right"

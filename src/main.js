@@ -17,6 +17,12 @@ import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 import './assets/all.scss'
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 
+//引入Vuetify樣式
+// import 'vuetify/styles'
+// import { createVuetify } from 'vuetify'
+// import * as components from 'vuetify/components'
+// import * as directives from 'vuetify/directives'
+
 //引入表單驗證vee-validation
 import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
 import * as AllRules from '@vee-validate/rules'
@@ -27,11 +33,11 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 
 //引入fontawsome樣式
 /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+// import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '../node_modules/@fortawesome/vue-fontawesome'
+// import { FontAwesomeIcon } from '../node_modules/@fortawesome/vue-fontawesome'
 /* import specific icons */
-library.add()
+// library.add()
 
 //引入千分號
 import { currency, date } from './methods/filters'
@@ -41,7 +47,11 @@ import $httpMessageState from './methods/pushMessageState.js'
 
 const app = createApp(App)
 
-app.config.globalProperties.$httpMessageState = $httpMessageState
+//加入Vuetify內容
+// const vuetify = createVuetify({
+//   components,
+//   directives
+// })
 
 //表單驗證部分
 //加入全部規則
@@ -55,13 +65,15 @@ configure({
 // 設定預設語系
 setLocale('zh_TW')
 
+app.config.globalProperties.$httpMessageState = $httpMessageState
+
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
+// app.use(vuetify)
 
 //全域註冊(元件名稱,對應import的名稱)
 app.component('LoadingPage', Loading)
-app.component('font-awesome-icon', FontAwesomeIcon)
 // app.component('Loading2', Loading2)
 app.component('VForm', Form)
 app.component('VField', Field)

@@ -74,8 +74,18 @@ const router = createRouter({
     },
     //作品集
     {
-      path: '/todolist',
-      component: () => import('../views/ToDoList.vue')
+      path: '/home',
+      component: () => import('../views/PortHome.vue'),
+      children: [
+        {
+          path: 'all',
+          component: () => import('../views/PortAll.vue')
+        },
+        {
+          path: 'todolist',
+          component: () => import('../views/ToDoList.vue')
+        }
+      ]
     }
   ]
 })

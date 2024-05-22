@@ -1,4 +1,4 @@
-<template>Home</template>
+<template>VueHome</template>
 <script>
 export default {
   data() {

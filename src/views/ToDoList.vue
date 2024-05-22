@@ -109,7 +109,7 @@ export default {
   background-color: #3dbeff;
   background-image: linear-gradient(rgba(255, 255, 255, 0.2) 2px, transparent 2px),
     linear-gradient(to right, rgba(255, 255, 255, 0.2) 2px, rgba(0, 0, 0, 0.1) 2px);
-  background-size: 50px 50px;
+  // background-size: 50px 50px;
 
   .frame {
     background-color: rgb(255, 245, 231);
