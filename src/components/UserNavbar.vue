@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import emitter from '../methods/emitter.js'
+import emitter from '@/methods/emitter.js'
 
 export default {
   data() {
