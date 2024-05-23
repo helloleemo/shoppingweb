@@ -7,9 +7,5 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/shoppingweb/'
-  // resolve: {
-  // alias: {
-  //   '@': fileURLToPath(new URL('./src', import.meta.url))
-  // }
-  // }
+  // base: import.meta.env.VITE_PATH_API === 'production' ? '/shoppingweb/' : ''
 })
