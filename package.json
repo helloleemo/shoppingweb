@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "homepage": "https://helloleemo.github.io/shopping-web",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -29,7 +30,8 @@
     "vue": "^3.4.26",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.3.0",
-    "vue3-loading-overlay": "^0.0.0"
+    "vue3-loading-overlay": "^0.0.0",
+    "vuetify": "^3.6.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
