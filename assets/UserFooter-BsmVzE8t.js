@@ -1,0 +1,1 @@
+import{_ as t,o,c as s,b as e}from"./index-CybjTFcM.js";const c={},r={class:"py-5 bg-dark"},n=e("div",{class:"container"},[e("p",{class:"m-0 text-center text-white"},"Copyright © 珍奇椅 2024")],-1),a=[n];function _(i,d){return o(),s("footer",r,a)}const f=t(c,[["render",_]]);export{f as U};
