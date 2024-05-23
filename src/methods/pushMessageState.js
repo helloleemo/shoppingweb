@@ -1,4 +1,4 @@
-import emitter from '@/methods/emitter'
+import emitter from './emitter'
 
 export default function (response, title = '更新') {
   if (response.data.success) {

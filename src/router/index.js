@@ -71,21 +71,6 @@ const router = createRouter({
           component: () => import('../views/UserCheckout.vue')
         }
       ]
-    },
-    //作品集
-    {
-      path: '/home',
-      component: () => import('../views/PortHome.vue'),
-      children: [
-        {
-          path: 'all',
-          component: () => import('../views/PortAll.vue')
-        },
-        {
-          path: 'todolist',
-          component: () => import('../views/ToDoList.vue')
-        }
-      ]
     }
   ]
 })

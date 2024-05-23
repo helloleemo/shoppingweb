@@ -41,7 +41,7 @@
 
 <script>
 // import ToastMessages from '../components/ToastMessages.vue'
-import emitter from '@/methods/emitter.js'
+import emitter from '../methods/emitter.js'
 
 export default {
   components: {

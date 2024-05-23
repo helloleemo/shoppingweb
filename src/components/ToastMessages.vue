@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Toast from '@/components/InfoToast.vue'
+import Toast from '../components/InfoToast.vue'
 
 export default {
   components: { Toast },
@@ -16,7 +16,7 @@ export default {
       messages: []
     }
   },
-  inject: ['emitter'], //
+  inject: ['emitter'],
   mounted() {
     // 加入push-message事件到emitter，(message)是外部傳來的資訊
     this.emitter.on('push-message', (message) => {
