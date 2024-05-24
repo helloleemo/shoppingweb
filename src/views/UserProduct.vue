@@ -15,11 +15,7 @@
     <div class="container px-4 px-lg-5 my-5">
       <div class="row gx-4 gx-lg-5 align-items-center">
         <div class="col-md-6">
-          <img
-            class="card-img-top mb-5 mb-md-0"
-            :src="`../src/assets/products/${product.title}.png`"
-            alt="..."
-          />
+          <img class="card-img-top mb-5 mb-md-0" :src="getImageSrc()" alt="..." />
         </div>
         <div class="col-md-6">
           <div class="small mb-1">{{ product.description }}</div>
@@ -80,7 +76,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" :src="`../src/assets/products/多彩波普椅.png`" alt="..." />
+            <img class="card-img-top" :src="`/products/多彩波普椅.png`" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -93,8 +89,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#/user/product/-Ny4-Hn0yzilsjsc-qQJ"
-                  >觀看更多</a
+                <router-link
+                  :to="`/user/product/-Ny4-Hn0yzilsjsc-qQJ`"
+                  class="btn btn-outline-dark mt-auto"
+                  >觀看更多</router-link
                 >
               </div>
             </div>
@@ -110,11 +108,7 @@
               Sale
             </div>
             <!-- Product image-->
-            <img
-              class="card-img-top"
-              :src="`../src/assets/products/未來主義設計椅.png`"
-              alt="..."
-            />
+            <img class="card-img-top" :src="`/products/未來主義設計椅.png`" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -136,8 +130,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#/user/product/-Ny4Aw8YcgaeP4jbtacO"
-                  >觀看更多</a
+                <router-link
+                  to="/user/product/-Ny4Aw8YcgaeP4jbtacO"
+                  class="btn btn-outline-dark mt-auto"
+                  >觀看更多</router-link
                 >
               </div>
             </div>
@@ -153,11 +149,7 @@
               Sale
             </div>
             <!-- Product image-->
-            <img
-              class="card-img-top"
-              :src="`../src/assets/products/民族風圖案扶手椅.png`"
-              alt="..."
-            />
+            <img class="card-img-top" :src="`/products/民族風圖案扶手椅.png`" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -171,8 +163,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#/user/product/-Ny4555XplC5f_E-fm7B"
-                  >觀看更多</a
+                <router-link
+                  to="/user/product/-Ny4555XplC5f_E-fm7B"
+                  class="btn btn-outline-dark mt-auto"
+                  >觀看更多</router-link
                 >
               </div>
             </div>
@@ -181,11 +175,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <img
-              class="card-img-top"
-              :src="`../src/assets/products/奢華古典扶手椅.png`"
-              alt="..."
-            />
+            <img class="card-img-top" :src="`/products/奢華古典扶手椅.png`" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -206,8 +196,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href="#/user/product/-Ny3xagF4hqM2-2Mov5O"
-                  >觀看更多</a
+                <router-link
+                  to="/user/product/-Ny3xagF4hqM2-2Mov5O"
+                  class="btn btn-outline-dark mt-auto"
+                  >觀看更多</router-link
                 >
               </div>
             </div>
@@ -346,7 +338,7 @@ export default {
       // console.log(api)
 
       this.$http.get(api).then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         this.isLoading = false
         if (res.data.success) {
           this.product = res.data.product
@@ -367,6 +359,14 @@ export default {
         console.log(res)
         this.status.loadingItem = '' //清空
       })
+    },
+    getImageSrc() {
+      try {
+        return new URL(`../assets/products/${this.product.title}.png`, import.meta.url).href
+      } catch (error) {
+        console.error(`Image not found for ${this.product.title}:`, error)
+        return ''
+      }
     }
   },
   created() {
