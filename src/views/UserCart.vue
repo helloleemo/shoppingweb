@@ -184,11 +184,8 @@
             <div v-for="item in products" :key="item.id" class="col-xl-4 col-md-6">
               <div class="card mb-5">
                 <div class="card-img-top">
-                  <img
-                    :src="`../src/assets/products/${item.title}.png`"
-                    class="rounded-top"
-                    alt=""
-                  />
+                  <!-- :src="`../src/assets/products/${item.title}.png`" -->
+                  <img :src="getImageSrc(item.title)" class="rounded-top" alt="" />
                 </div>
                 <div class="card-body">
                   <p class="tag border px-2 py-0 rounded fs-6 d-inline-block">
@@ -278,6 +275,14 @@ export default {
         this.products = res.data.products
         this.isLoading = false
       })
+    },
+    getImageSrc(title) {
+      try {
+        return new URL(`../assets/products/${title}.png`, import.meta.url).href
+      } catch (error) {
+        console.error(`Image not found for ${title}:`, error)
+        return ''
+      }
     },
     getProduct(id) {
       //進入單一商品列表
