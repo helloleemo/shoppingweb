@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// 修正
 import emitter from '../methods/emitter.js'
 import ToastMessages from '../components/ToastMessages.vue'
 import UserNavbar from '../components/UserNavbar.vue'
