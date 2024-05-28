@@ -76,7 +76,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" :src="`/products/多彩波普椅.png`" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('多彩波普椅')" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -89,10 +89,13 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <router-link
-                  :to="`/user/product/-Ny4-Hn0yzilsjsc-qQJ`"
-                  class="btn btn-outline-dark mt-auto"
+                <!-- <router-link to="/user/product/-Ny4-Hn0yzilsjsc-qQJ" aria-current="page" href="#"
                   >觀看更多</router-link
+                > -->
+                <a
+                  href="https://helloleemo.github.io/shoppingweb/#/user/product/-Ny4-Hn0yzilsjsc-qQJ"
+                  class="btn btn-outline-dark mt-auto"
+                  >觀看更多</a
                 >
               </div>
             </div>
@@ -108,7 +111,7 @@
               Sale
             </div>
             <!-- Product image-->
-            <img class="card-img-top" :src="`/products/未來主義設計椅.png`" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('未來主義設計椅')" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -130,10 +133,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <router-link
-                  to="/user/product/-Ny4Aw8YcgaeP4jbtacO"
+                <a
+                  href="https://helloleemo.github.io/shoppingweb/#/user/product/-Ny4Aw8YcgaeP4jbtacO"
                   class="btn btn-outline-dark mt-auto"
-                  >觀看更多</router-link
+                  >觀看更多</a
                 >
               </div>
             </div>
@@ -149,7 +152,7 @@
               Sale
             </div>
             <!-- Product image-->
-            <img class="card-img-top" :src="`/products/民族風圖案扶手椅.png`" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('民族風圖案扶手椅')" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -163,10 +166,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <router-link
-                  to="/user/product/-Ny4555XplC5f_E-fm7B"
+                <a
+                  href="https://helloleemo.github.io/shoppingweb/#/user/product/-Ny4555XplC5f_E-fm7B"
                   class="btn btn-outline-dark mt-auto"
-                  >觀看更多</router-link
+                  >觀看更多</a
                 >
               </div>
             </div>
@@ -175,7 +178,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" :src="`/products/奢華古典扶手椅.png`" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('奢華古典扶手椅')" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -196,10 +199,10 @@
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
               <div class="text-center">
-                <router-link
-                  to="/user/product/-Ny3xagF4hqM2-2Mov5O"
+                <a
+                  href="https://helloleemo.github.io/shoppingweb/#/user/product/-Ny3xagF4hqM2-2Mov5O"
                   class="btn btn-outline-dark mt-auto"
-                  >觀看更多</router-link
+                  >觀看更多</a
                 >
               </div>
             </div>
@@ -213,10 +216,9 @@
   <section id="about" class="about">
     <div class="container" data-aos="fade-up">
       <div class="row position-relative">
-        <div
-          class="col-lg-7 about-img"
-          style="background-image: url(../src/assets/img/banner.png)"
-        ></div>
+        <div class="col-lg-7 about-img">
+          <img style="width: 800px" :src="getInfoSrc('banner')" alt="" />
+        </div>
 
         <div class="col-lg-7">
           <h3 class="text-secondary"></h3>
@@ -252,16 +254,14 @@
   <section id="alt-services" class="alt-services">
     <div class="container" data-aos="fade-up">
       <div class="row justify-content-around gy-4">
-        <div
-          class="col-lg-6 img-bg"
-          style="
-            background-image: url(../src/assets/img/banner/pixlr-image-generator-25dfecbf-b02b-4275-8dce-b48b8f7dc6fe.png);
-          "
-          data-aos="zoom-in"
-          data-aos-delay="100"
-        ></div>
+        <div class="col-lg-6 img-bg" data-aos="zoom-in" data-aos-delay="100">
+          <img
+            :src="getInfoSrc('pixlr-image-generator-25dfecbf-b02b-4275-8dce-b48b8f7dc6fe')"
+            alt=""
+          />
+        </div>
 
-        <div class="col-lg-5 d-flex flex-column justify-content-center">
+        <div class="col-lg-5 d-flex flex-column justify-content-center bg-white opacity-75 px-5">
           <h3 class="pt-5">{{ text.title3 }}</h3>
           <p class="text-primary lh-base">
             {{ text.description3 }}
@@ -365,6 +365,22 @@ export default {
         return new URL(`../assets/products/${this.product.title}.png`, import.meta.url).href
       } catch (error) {
         console.error(`Image not found for ${this.product.title}:`, error)
+        return ''
+      }
+    },
+    getRecomSrc(title) {
+      try {
+        return new URL(`../assets/products/${title}.png`, import.meta.url).href
+      } catch (error) {
+        console.error(`Image not found for ${title}:`, error)
+        return ''
+      }
+    },
+    getInfoSrc(title) {
+      try {
+        return new URL(`../assets/img/banner/${title}.png`, import.meta.url).href
+      } catch (error) {
+        console.error(`Image not found for ${title}:`, error)
         return ''
       }
     }
