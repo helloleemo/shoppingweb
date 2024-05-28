@@ -60,7 +60,11 @@
                 </div>
                 加入購物車
               </button>
-              <button class="btn btn-outline-primary btn-xl w-100 mt-2" type="button">結帳</button>
+              <router-link to="/user/cartview"
+                ><button class="btn btn-outline-primary btn-xl w-100 mt-2" type="button">
+                  結帳
+                </button></router-link
+              >
             </div>
           </div>
         </div>
