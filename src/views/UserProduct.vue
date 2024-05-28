@@ -115,7 +115,7 @@
               Sale
             </div>
             <!-- Product image-->
-            <img class="card-img-top" :src="getRecomSrc('未來主義設計椅')" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('未來主義設計椅')" alt="未來主義設計椅" />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -156,7 +156,11 @@
               Sale
             </div>
             <!-- Product image-->
-            <img class="card-img-top" :src="getRecomSrc('民族風圖案扶手椅')" alt="..." />
+            <img
+              class="card-img-top"
+              :src="getRecomSrc('民族風圖案扶手椅')"
+              alt="民族風圖案扶手椅"
+            />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
@@ -182,7 +186,7 @@
         <div class="col mb-5">
           <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" :src="getRecomSrc('奢華古典扶手椅')" alt="..." />
+            <img class="card-img-top" :src="getRecomSrc('奢華古典扶手椅')" alt="奢華古典扶手椅" />
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
